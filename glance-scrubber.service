@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenStack Image Clean up Service
+After=syslog.target network.target
+
+[Service]
+Type=notify
+NotifyAccess=all
+Restart=always
+User=glance
+ExecStart=/usr/bin/glance-scrubber
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,42 @@
+From 62bcbe9061308c0d96de1522f5500b12149a1a59 Mon Sep 17 00:00:00 2001
+From: Victor Morales <victor.morales@intel.com>
+Date: Thu, 18 Jun 2015 13:25:01 -0500
+Subject: [PATCH] Default configuration values
+
+It was changed values that are considered default.
+
+Signed-off-by: Victor Morales <victor.morales@intel.com>
+---
+ etc/glance-api.conf      | 2 +-
+ etc/glance-registry.conf | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/etc/glance-api.conf b/etc/glance-api.conf
+index 6e85cbb..f93ee3f 100644
+--- a/etc/glance-api.conf
++++ b/etc/glance-api.conf
+@@ -445,7 +445,7 @@ revocation_cache_time = 10
+ # service name removed. For example, if your paste section name is
+ # [pipeline:glance-api-keystone], you would configure the flavor below
+ # as 'keystone'.
+-#flavor=
++flavor = keystone
+ 
+ [store_type_location_strategy]
+ # The scheme list to use to get store preference order. The scheme must be
+diff --git a/etc/glance-registry.conf b/etc/glance-registry.conf
+index f7ce795..19adb7d 100644
+--- a/etc/glance-registry.conf
++++ b/etc/glance-registry.conf
+@@ -256,7 +256,7 @@ admin_password = %SERVICE_PASSWORD%
+ # service name removed. For example, if your paste section name is
+ # [pipeline:glance-registry-keystone], you would configure the flavor below
+ # as 'keystone'.
+-#flavor=
++flavor = keystone
+ 
+ [profiler]
+ # If False fully disable profiling feature.
+-- 
+2.1.0
+

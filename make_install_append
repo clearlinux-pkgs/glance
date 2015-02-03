@@ -1,0 +1,6 @@
+install -d -m 755 %{buildroot}/usr/share/defaults/glance/
+install -p -D -m 644 etc/*.conf %{buildroot}/usr/share/defaults/glance/
+install -p -D -m 644 etc/*.ini %{buildroot}/usr/share/defaults/glance/
+install -p -D -m 644 etc/*.json %{buildroot}/usr/share/defaults/glance/
+install -p -D -m 644 etc/*.sample %{buildroot}/usr/share/defaults/glance/
+for i in %{buildroot}/usr/share/defaults/glance/*.sample; do mv $i ${i%.*}; done;
