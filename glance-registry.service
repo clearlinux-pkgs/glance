@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenStack Image Registry Service
+After=syslog.target network.target
+
+[Service]
+Type=notify
+NotifyAccess=all
+Restart=always
+User=glance
+ExecStart=/usr/bin/glance-registry
+
+[Install]
+WantedBy=multi-user.target

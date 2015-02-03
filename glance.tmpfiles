@@ -1,0 +1,4 @@
+Z /etc/glance/* 0640 root glance
+z /etc/glance 0750 root glance
+d /var/lib/glance - glance glance - -
+d /var/log/glance - glance glance - -
