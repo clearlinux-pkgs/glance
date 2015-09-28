@@ -4,7 +4,7 @@
 #
 Name     : glance
 Version  : 2015.1.1
-Release  : 37
+Release  : 38
 URL      : http://tarballs.openstack.org/glance/glance-2015.1.1.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-2015.1.1.tar.gz
 Source1  : glance-api.service
