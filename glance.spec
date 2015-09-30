@@ -4,7 +4,7 @@
 #
 Name     : glance
 Version  : 11.0.0.0rc1
-Release  : 39
+Release  : 40
 URL      : http://tarballs.openstack.org/glance/glance-11.0.0.0rc1.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-11.0.0.0rc1.tar.gz
 Source1  : glance-api.service
@@ -84,6 +84,8 @@ BuildRequires : traceback2
 BuildRequires : unittest2
 BuildRequires : virtualenv
 BuildRequires : xattr
+Patch1: 0001-Enable-systemd-notification.patch
+Patch2: 0002-Default-configuration-values.patch
 
 %description
 This is a database migration repository.
@@ -129,6 +131,8 @@ python components for the glance package.
 
 %prep
 %setup -q -n glance-11.0.0.0rc1
+%patch1 -p1
+%patch2 -p1
 
 %build
 python2 setup.py build -b py2
