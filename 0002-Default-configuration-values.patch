@@ -1,18 +1,27 @@
-From e595fc061df0069728111a73003babf6b6256f02 Mon Sep 17 00:00:00 2001
+From 46e91a966c6b731ea2ecfdd17bbbffa14c783765 Mon Sep 17 00:00:00 2001
 From: Victor Morales <victor.morales@intel.com>
 Date: Wed, 30 Sep 2015 16:25:59 -0500
 Subject: [PATCH] Default configuration values
 
 Signed-off-by: Victor Morales <victor.morales@intel.com>
 ---
- etc/glance-api.conf      | 2 +-
+ etc/glance-api.conf      | 4 ++--
  etc/glance-registry.conf | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/etc/glance-api.conf b/etc/glance-api.conf
-index 5613845..88ca67c 100644
+index 5613845..c553f73 100644
 --- a/etc/glance-api.conf
 +++ b/etc/glance-api.conf
+@@ -698,7 +698,7 @@
+ 
+ # Directory to which the Filesystem backend store writes images.
+ # (string value)
+-#filesystem_store_datadir = <None>
++filesystem_store_datadir = /var/lib/glance/images/
+ 
+ # List of directories and its priorities to which the Filesystem
+ # backend store writes images. (multi valued)
 @@ -1302,7 +1302,7 @@
  # service name removed. For example, if your paste section name is
  # [pipeline:glance-api-keystone] use the value "keystone" (string
@@ -36,5 +45,5 @@ index 9a265b4..b14634f 100644
  # Name of the paste configuration file. (string value)
  #config_file = <None>
 -- 
-2.1.0
+2.4.3
 
