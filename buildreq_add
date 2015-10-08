@@ -57,3 +57,4 @@ python-mock
 psutil
 pep8
 funcsigs
+automaton
