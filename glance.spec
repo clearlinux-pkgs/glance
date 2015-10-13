@@ -4,7 +4,7 @@
 #
 Name     : glance
 Version  : 11.0.0.0rc2
-Release  : 43
+Release  : 44
 URL      : http://tarballs.openstack.org/glance/glance-11.0.0.0rc2.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-11.0.0.0rc2.tar.gz
 Source1  : glance-api.service
@@ -15,8 +15,8 @@ Summary  : OpenStack Image Service
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: glance-bin
-Requires: glance-config
 Requires: glance-python
+Requires: glance-config
 Requires: glance-data
 BuildRequires : Mako
 BuildRequires : MarkupSafe
@@ -87,6 +87,7 @@ BuildRequires : virtualenv
 BuildRequires : xattr
 Patch1: 0001-Enable-systemd-notification.patch
 Patch2: 0002-Default-configuration-values.patch
+Patch3: 0003-move-json-metadefs-to-stateless-dir.patch
 
 %description
 This directory contains predefined namespaces for Glance Metadata Definitions
@@ -135,6 +136,7 @@ python components for the glance package.
 %setup -q -n glance-11.0.0.0rc2
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 python2 setup.py build -b py2
@@ -181,31 +183,6 @@ for i in %{buildroot}/usr/share/defaults/glance/*.sample; do mv $i ${i%.*}; done
 
 %files config
 %defattr(-,root,root,-)
-%config /usr/etc/glance/metadefs/README
-%config /usr/etc/glance/metadefs/compute-aggr-disk-filter.json
-%config /usr/etc/glance/metadefs/compute-aggr-iops-filter.json
-%config /usr/etc/glance/metadefs/compute-aggr-num-instances.json
-%config /usr/etc/glance/metadefs/compute-cpu-pinning.json
-%config /usr/etc/glance/metadefs/compute-guest-shutdown.json
-%config /usr/etc/glance/metadefs/compute-host-capabilities.json
-%config /usr/etc/glance/metadefs/compute-hypervisor.json
-%config /usr/etc/glance/metadefs/compute-instance-data.json
-%config /usr/etc/glance/metadefs/compute-libvirt-image.json
-%config /usr/etc/glance/metadefs/compute-libvirt.json
-%config /usr/etc/glance/metadefs/compute-quota.json
-%config /usr/etc/glance/metadefs/compute-randomgen.json
-%config /usr/etc/glance/metadefs/compute-trust.json
-%config /usr/etc/glance/metadefs/compute-vcputopology.json
-%config /usr/etc/glance/metadefs/compute-vmware-flavor.json
-%config /usr/etc/glance/metadefs/compute-vmware-quota-flavor.json
-%config /usr/etc/glance/metadefs/compute-vmware.json
-%config /usr/etc/glance/metadefs/compute-watchdog.json
-%config /usr/etc/glance/metadefs/compute-xenapi.json
-%config /usr/etc/glance/metadefs/glance-common-image-props.json
-%config /usr/etc/glance/metadefs/operating-system.json
-%config /usr/etc/glance/metadefs/software-databases.json
-%config /usr/etc/glance/metadefs/software-runtimes.json
-%config /usr/etc/glance/metadefs/software-webservers.json
 /usr/lib/systemd/system/glance-api.service
 /usr/lib/systemd/system/glance-registry.service
 /usr/lib/systemd/system/glance-scrubber.service
@@ -221,6 +198,31 @@ for i in %{buildroot}/usr/share/defaults/glance/*.sample; do mv $i ${i%.*}; done
 /usr/share/defaults/glance/glance-registry.conf
 /usr/share/defaults/glance/glance-scrubber.conf
 /usr/share/defaults/glance/glance-swift.conf
+/usr/share/defaults/glance/metadefs/README
+/usr/share/defaults/glance/metadefs/compute-aggr-disk-filter.json
+/usr/share/defaults/glance/metadefs/compute-aggr-iops-filter.json
+/usr/share/defaults/glance/metadefs/compute-aggr-num-instances.json
+/usr/share/defaults/glance/metadefs/compute-cpu-pinning.json
+/usr/share/defaults/glance/metadefs/compute-guest-shutdown.json
+/usr/share/defaults/glance/metadefs/compute-host-capabilities.json
+/usr/share/defaults/glance/metadefs/compute-hypervisor.json
+/usr/share/defaults/glance/metadefs/compute-instance-data.json
+/usr/share/defaults/glance/metadefs/compute-libvirt-image.json
+/usr/share/defaults/glance/metadefs/compute-libvirt.json
+/usr/share/defaults/glance/metadefs/compute-quota.json
+/usr/share/defaults/glance/metadefs/compute-randomgen.json
+/usr/share/defaults/glance/metadefs/compute-trust.json
+/usr/share/defaults/glance/metadefs/compute-vcputopology.json
+/usr/share/defaults/glance/metadefs/compute-vmware-flavor.json
+/usr/share/defaults/glance/metadefs/compute-vmware-quota-flavor.json
+/usr/share/defaults/glance/metadefs/compute-vmware.json
+/usr/share/defaults/glance/metadefs/compute-watchdog.json
+/usr/share/defaults/glance/metadefs/compute-xenapi.json
+/usr/share/defaults/glance/metadefs/glance-common-image-props.json
+/usr/share/defaults/glance/metadefs/operating-system.json
+/usr/share/defaults/glance/metadefs/software-databases.json
+/usr/share/defaults/glance/metadefs/software-runtimes.json
+/usr/share/defaults/glance/metadefs/software-webservers.json
 /usr/share/defaults/glance/policy.json
 /usr/share/defaults/glance/property-protections-policies.conf
 /usr/share/defaults/glance/property-protections-roles.conf
