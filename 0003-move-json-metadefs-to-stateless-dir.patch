@@ -1,0 +1,25 @@
+From 28a61048836cca44db905c1cd85acfac5e0b2fec Mon Sep 17 00:00:00 2001
+From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
+Date: Tue, 13 Oct 2015 11:25:06 -0500
+Subject: [PATCH] move json metadefs to stateless dir
+
+---
+ setup.cfg | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.cfg b/setup.cfg
+index 472cc80..47af906 100644
+--- a/setup.cfg
++++ b/setup.cfg
+@@ -19,7 +19,7 @@ classifier =
+ 
+ [files]
+ data_files = 
+-	etc/glance/metadefs = etc/metadefs/*
++	/usr/share/defaults/glance/metadefs = etc/metadefs/*
+ 
+ [extras]
+ cinder = 
+-- 
+2.4.3
+
