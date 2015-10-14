@@ -1,0 +1,26 @@
+From 5267bf1a0268bb95ed4e8b82602f2af8c2da8603 Mon Sep 17 00:00:00 2001
+From: Victor Morales <victor.morales@intel.com>
+Date: Wed, 14 Oct 2015 16:07:58 -0500
+Subject: [PATCH] Add support docker images
+
+Signed-off-by: Victor Morales <victor.morales@intel.com>
+---
+ etc/glance-api.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/etc/glance-api.conf b/etc/glance-api.conf
+index afde2d8..7eeb562 100644
+--- a/etc/glance-api.conf
++++ b/etc/glance-api.conf
+@@ -963,7 +963,7 @@ filesystem_store_datadir = /var/lib/glance/images/
+ # Supported values for the 'container_format' image attribute (list
+ # value)
+ # Deprecated group/name - [DEFAULT]/container_formats
+-#container_formats = ami,ari,aki,bare,ovf,ova
++container_formats = ami,ari,aki,bare,ovf,ova,docker
+ 
+ # Supported values for the 'disk_format' image attribute (list value)
+ # Deprecated group/name - [DEFAULT]/disk_formats
+-- 
+2.1.0
+
