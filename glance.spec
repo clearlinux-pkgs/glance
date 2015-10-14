@@ -4,7 +4,7 @@
 #
 Name     : glance
 Version  : 11.0.0.0rc3
-Release  : 45
+Release  : 46
 URL      : http://tarballs.openstack.org/glance/glance-11.0.0.0rc3.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-11.0.0.0rc3.tar.gz
 Source1  : glance-api.service
@@ -88,6 +88,7 @@ BuildRequires : xattr
 Patch1: 0001-Enable-systemd-notification.patch
 Patch2: 0002-Default-configuration-values.patch
 Patch3: 0003-move-json-metadefs-to-stateless-dir.patch
+Patch4: 0004-Add-support-docker-images.patch
 
 %description
 This directory contains predefined namespaces for Glance Metadata Definitions
@@ -137,6 +138,7 @@ python components for the glance package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 python2 setup.py build -b py2
