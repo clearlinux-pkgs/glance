@@ -2,3 +2,4 @@
 0002-Default-configuration-values.patch
 0003-move-json-metadefs-to-stateless-dir.patch
 0004-Add-support-docker-images.patch
+0005-Set-default-Syslog.patch

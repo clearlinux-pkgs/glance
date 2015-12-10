@@ -1,0 +1,40 @@
+From 4893d804b152670b05308de9911d9ef3438562a6 Mon Sep 17 00:00:00 2001
+From: Carlos Arturo Garcia Garcia <carlos.garcia.garcia@intel.com>
+Date: Thu, 10 Dec 2015 10:55:01 -0600
+Subject: [PATCH] Set default Syslog
+
+Signed-off-by: Carlos Arturo Garcia Garcia <carlos.garcia.garcia@intel.com>
+---
+ etc/glance-api.conf      | 2 +-
+ etc/glance-registry.conf | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/etc/glance-api.conf b/etc/glance-api.conf
+index 7eeb562..4ea2e0c 100644
+--- a/etc/glance-api.conf
++++ b/etc/glance-api.conf
+@@ -391,7 +391,7 @@
+ 
+ # Use syslog for logging. Existing syslog format is DEPRECATED and
+ # will be changed later to honor RFC5424. (boolean value)
+-#use_syslog = false
++use_syslog = true
+ 
+ # (Optional) Enables or disables syslog rfc5424 format for logging. If
+ # enabled, prefixes the MSG part of the syslog message with APP-NAME
+diff --git a/etc/glance-registry.conf b/etc/glance-registry.conf
+index 51d2231..88f5aa4 100644
+--- a/etc/glance-registry.conf
++++ b/etc/glance-registry.conf
+@@ -216,7 +216,7 @@
+ 
+ # Use syslog for logging. Existing syslog format is DEPRECATED and
+ # will be changed later to honor RFC5424. (boolean value)
+-#use_syslog = false
++use_syslog = true
+ 
+ # (Optional) Enables or disables syslog rfc5424 format for logging. If
+ # enabled, prefixes the MSG part of the syslog message with APP-NAME
+-- 
+1.9.1
+
