@@ -4,7 +4,7 @@
 #
 Name     : glance
 Version  : 11.0.0
-Release  : 47
+Release  : 48
 URL      : http://tarballs.openstack.org/glance/glance-11.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-11.0.0.tar.gz
 Source1  : glance-api.service
@@ -38,6 +38,7 @@ BuildRequires : jsonschema
 BuildRequires : keystonemiddleware
 BuildRequires : linecache2
 BuildRequires : msgpack-python
+BuildRequires : netaddr
 BuildRequires : netifaces
 BuildRequires : oslo.db
 BuildRequires : oslo.messaging
@@ -89,6 +90,7 @@ Patch1: 0001-Enable-systemd-notification.patch
 Patch2: 0002-Default-configuration-values.patch
 Patch3: 0003-move-json-metadefs-to-stateless-dir.patch
 Patch4: 0004-Add-support-docker-images.patch
+Patch5: 0005-Set-default-Syslog.patch
 
 %description
 This directory contains predefined namespaces for Glance Metadata Definitions
@@ -139,6 +141,7 @@ python components for the glance package.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 python2 setup.py build -b py2
