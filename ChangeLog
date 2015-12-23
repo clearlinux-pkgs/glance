@@ -1,6 +1,32 @@
 CHANGES
 =======
 
+11.0.1
+------
+
+* Release notes for 11.0.1
+* Fix model sync for SQLite
+* Updated from global requirements
+* Updated from global requirements
+* Move store config opt to glance_store section
+* force releasenotes warnings to be treated as errors
+* Update os.path.remove as it does not exist
+* V1: Stop id changes after the image creation
+* Disallow user modifing ACTIVE_IMMUTABLE of deactivated images
+* Imported Translations from Zanata
+* Catch InvalidImageStatusTransition error
+* add "unreleased" release notes page
+* Add reno for release notes management
+* add first reno-based release note
+* set default branch for git review
+* Add swiftclient to test-requirements
+* Updated from global requirements
+* Pass CONF to logging setup
+* Fixed registry invalid token exception handling
+* Updated from global requirements
+* Decrease test failure if second changes during run
+* Switch to post-versioning
+
 11.0.0
 ------
 
