@@ -4,7 +4,7 @@
 #
 Name     : glance
 Version  : 11.0.1
-Release  : 49
+Release  : 50
 URL      : http://tarballs.openstack.org/glance/glance-11.0.1.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-11.0.1.tar.gz
 Source1  : glance-api.service
