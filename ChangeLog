@@ -1,52 +1,334 @@
 CHANGES
 =======
 
-11.0.1
+12.0.0
 ------
 
-* Release notes for 11.0.1
-* Fix model sync for SQLite
-* Updated from global requirements
-* Updated from global requirements
-* Move store config opt to glance_store section
-* force releasenotes warnings to be treated as errors
-* Update os.path.remove as it does not exist
-* V1: Stop id changes after the image creation
-* Disallow user modifing ACTIVE_IMMUTABLE of deactivated images
 * Imported Translations from Zanata
-* Catch InvalidImageStatusTransition error
-* add "unreleased" release notes page
-* Add reno for release notes management
-* add first reno-based release note
-* set default branch for git review
-* Add swiftclient to test-requirements
+* Imported Translations from Zanata
+* Imported Translations from Zanata
+* Imported Translations from Zanata
+* Imported Translations from Zanata
+* Imported Translations from Zanata
+* Update .gitreview for stable/mitaka
+
+12.0.0.0rc1
+-----------
+
+* revert warnerrors before gate breaks
+* Imported Translations from Zanata
+* Catch exceptions.HasSnapshot() from delete image in rbd driver
+* Imported Translations from Zanata
+* register the config generator default hook with the right name
+* Reject bodies for metadef commands
+* Remove unused enable_v3_api config option
+* glance-manage db purge failure for limit
+* Imported Translations from Zanata
+* Remove state transition from active to queued
+* Imported Translations from Zanata
+* Updated the wording in the database architecture docs
+* Test tag against schema to check length
+* Update the config files
+* Imported Translations from Zanata
+* Adds virtual_size to notifications
+* Update configuring of Cinder store
+* Add debug testenv in tox
+* Fix levels of Swift configuration documentation
+* no module docs generated
+* Deprecate use_user_token parameter
+* Creating or updating a image member in a list causes 500
 * Updated from global requirements
-* Pass CONF to logging setup
+* Updating comment in tests/unit/test_migrations.py
+* Fix update all props when you delete image
+
+12.0.0.0b3
+----------
+
+* Fix location update
+* Moved CORS middleware configuration into oslo-config-generator
+* Use assertGreater/Less/Equal instead of assertTrue(A * B)
+* New metadata definitions from CIM
+* Add support for DSA signatures
+* Fix message formatting in glance-manage purge
+* Updated from global requirements
+* Remove unused pngmath sphinx extension
+* Do not use constraints for venv
+* Fix BaseException.message deprecation warnings
+* Remove py33 from tox envlist
+* Resolve i18n and Sphinx issues in signature_utils
+* Add support for ECC signatures
+* Return 204 rather than 403 when no image data
+* Move bandit into pep8
+* Updated from global requirements
+* Support importing OVA/OVF package to Glance
+* Always use constraints
+* Updated from global requirements
+* Include registry_client_* options in glance-scrubber.conf
+* Python 3: fix a few simple "str vs bytes" issues
+* remove redundant "#!/usr/bin/env python" header
+* Encourage usage of identity API v3
+* Python 3: fix glance.tests.functional.db.simple
+* Reuse encodeutils.to_utf8()
+* Fix OpenSSL DeprecationWarning on Python 3
+* Added support new v2 API image filters
+* Add sign-the-data signature verification
+* Stop gridfs driver support
+* Updated from global requirements
+* Set self and schema to readOnly
+* Make sure the generated glance-api.conf.sample is always the same
+* Add unit test for default number of workers
+* Replace assertRaisesRegexp with assertRaisesRegex
+* Reuse jsonutils.dump_as_bytes()
+* Do not log sensitive data
+* Cache documentation about differences in files
+* Tolerate installation of pycryptodome
+* grammar correction in basic architecture file
+* Promote log message to exception level on artifact load failure
+* Allow mutable argument to be passed to BinaryObject artifacts
+* Include version number into glare factory path in paste
+* Fix 500 status code when we add in "depend_on" yourself
+* Unallowed request PATCH when work with blob
+* Use keystoneclient functions to receive endpoint
+* Drop python 2.6 support
+* Move Glance Artifact Repository API to separate endpoint
+* Imported Translations from Zanata
+* Imported Translations from Zanata
+* clean up auto-generated docs for configuration options
+* Update the home page
+* Updated from global requirements
+* Misspelling in message
+* v2 - "readOnly" key should be used in schemas
+* Prevent user to remove last location of the image
+* Fix _wait_on_task_execution()
+* Updating message for conversion_format cfg_opt
+* Fix setup.cfg
+* Replace exit() by sys.exit()
+* Change Metadefs OS::Nova::Instance to OS::Nova::Server
+* Change exception format checks in artifact tests
+* Imported Translations from Zanata
+* Remove glance_store specific unit tests
+* Encode headers to launch glance v2 on mod_wsgi
+* Make the task's API admin only by default
+* No need to have async executor fetching be a contextmanager
+* Updated from global requirements
+* Python 3: fix glance.tests.unit
+* Add storage_policy VMware driver option for flavors
+* Remove unneeded glance unit test assert calls
+* utils: remove PrettyTable custom class in favor of the eponym libary
+* Hacking checks for not using dict iteration calls
+* Add note in comment where upstream taskflow change is
+* Fix for Image members not generating notifications
+* Updated from global requirements
+* Generate page of all config options in docs
+* Use oslo.utils exception encoding util
+* Add hacking check to ensure not use xrange()
+* Updated from global requirements
+* Fix help command in cache manange and replicator
+* Add properties_target to Instance SW metadefs
+* Simplify taskflow engine loading
+* Allow image-list if access to attrs is forbidden
+* [docs] Add Domain model implementation sub-section
+* Drop dict.iterkeys() for python3
+* Fix re-adding deleted members to an image in v1
+* Replace xrange() with six.moves.range()
+
+12.0.0.0b2
+----------
+
+* Add metadefs for Cinder volume type configuration
+* Python3: Replace dict.iteritems with dict.items
+* Enhance description of instance-uuid option for image-create
+* Make cache config options clearer
+* Imported Translations from Zanata
+* Update links for CLI Reference
+* Python3: fix operations of dict keys()
+* Implement trust support for api v2
+* Imported Translations from Zanata
+* Fix the wrong options in glance-api and glance-registry confs
+* Do not use api-paste.ini osprofiler options
+* Update the cache documentation
+* Updated from global requirements
+* Catch UnsupportedAlgorithm exceptions
+* Add functionality to define requests without body
+* Updated from global requirements
+* Use six.moves.reduce instead of builtin reduce
+* Fixing the deprecated library function
+* Remove Indices and tables section
+* Remove unused logging import
+* Fix Glance doesn't catches UnicodeDecodeError exception
+* Updated from global requirements
+* assertIsNone(val) instead of assertEqual(None,val)
+* Fix glance doesn't catches exception NotFound from glance_store
+* Deprecated tox -downloadcache option removed
+* Wait all wsgi server completion for worker exit
+* Fix model sync for SQLite
+* Update the cache middleware flavor guideline
+* Add sign-the-hash deprecation warning
+* Add db purge command
+* Replace oslo_utils.timeutils
+* Add missing CPU features to Glance Metadata Catalog
+* Updated from global requirements
+* Remove iso8601 dependency
+* Assert problems in Glance raised by Bandit
+* Import i18n functions directly
+* Validate empty location value for v1 api
+* Updated from global requirements
+* Added CORS support to Glance
+* Capitalize 'glance' in db.rst
+* Stop using tearDown in v1/test_api.py
+* Fix return 200 status code when we operate with nonexistent property
+* Fix default value with postgreSQL
+* Rename glance-store to glance_store
+* Run py34 env first when launching tests
+* Move store config opt to glance_store section
+* Remove artifact entry point
+* Remove version from setup.cfg
+* Add the Docker container format
+* Change the format of some inconsistent docstring
+
+12.0.0.0b1
+----------
+
+* Updated from global requirements
+* Automated bandit checks in glance
+* Port _validate_time() to Python 3
+* Updated from global requirements
+* Support Unicode request_id on Python 3
+* Unicode fix in BaseClient._do_request() on py3
+* Fix incorrect task status with wrong parameter
+* Document contribution guidelines
+* Updated from global requirements
+* Fix glance.tests.unit.v1.test_registry_client
+* Fix sample Rally plugin
+* force releasenotes warnings to be treated as errors
+* V1: Fix bad dates returning 500
+* Fix 500 error when filtering with specified invalid operator
+* Fix 500 error when filtering by 'created_at' and 'updated_at'
+* Update os.path.remove as it does not exist
+* Change the default notification exchange to glance
+* Add documentation for configuring disk_formats
+* V1: Stop id changes after the image creation
+* Format log messages correctly
+* [docs] Update description of Glance-Swift conf options
+* Disallow user modifing ACTIVE_IMMUTABLE of deactivated images
+* [docs] Update Glance architecture image
+* test: make enforce_type=True in CONF.set_override
+* OpenStack typo
+* Support new v2 API image filters
+* Remove anyjson useless requirement
+* Python3: fix glance.tests.unit.v2.test_registry_client
+* Location add catch bad Uri
+* [docs] delete duplicated image_status_transition.png
+* Reactivating admin public image returns 500
+* Python3: fix glance.tests.unit.test_migrations
+* Python3: fix test_image_data_resource
+* Remove todo to remove /versions
+* Python3: fix test_registry_api
+* Updated from global requirements
+* Fix typos in configuring.rst
+* Python3: fix glance.tests.unit.v2.test_images_resource
+* add "unreleased" release notes page
+* Python 3: Fix glance.tests.unit.v2.test_tasks_resource
+* Python 3: fix test_image_members_resource
+* Remove default=None for config options
+* Update style for signature_utils class
+* Add -constraints for CI jobs
+* Add a deprecation warning to the DB downgrade
+* Remove unused exceptions from glance
+* Add tasks info to glance documentation
+* Add reno for release notes management
+* Add subunit.log to gitignore
+* Updated from global requirements
+* Fix content type for Forbidden exception
+* Port v1.test_registry_api to Python 3
+* Remove requests to example.com during unit testing
+* Port signature_utils to Python 3
+* Imported Translations from Zanata
+* Rename semantic-version dep to semantic_version
+* Port script utils to Python 3
+* Use dict comprehension
+* Typo fix
+* Updated from global requirements
+* Port test_cache_manage to Python 3
+* Port test_wsgi to Python 3
+* Updated from global requirements
+* Fix incorrect Glance image metadata description
+* Rename glance-store dep to glance_store
+* Remove glance_store from exta requirements
+* Port async tests to Python 3
 * Fixed registry invalid token exception handling
 * Updated from global requirements
-* Decrease test failure if second changes during run
-* Switch to post-versioning
+* Add more tests which pass on Python 3
+* Show the file name when there is an error loading an image metadef file
+* Remove the duplicate file path created by sphinx build
+* [docs] Adds new image status - deactivated
+* Cause forbidden when deactivating image(non-admin)
+* Updated from global requirements
+* Don't allow queries with 'IN' predicate with an empty sequence
+* utils: use oslo_utils.uuidutils
+* utils: remove unused functions in glance.utils
+* Bodies that are not dicts or lists return 400
+* Pass CONF to logging setup
+* Fix 500 error when filtering by invalid version string
+* Fix error when downloading image status is not active
 
 11.0.0
 ------
 
 * Add 'deactivated' status to image schema
+* Allow owner to be set on image create
+* Decrease test failure if second changes during run
+* config: remove default lockutils set
+* Catch InvalidImageStatusTransition error
+* Port rpc and wsgi to Python 3
+* Refactoring exceptions
+* Fix glance ignored a headers when created artifact
+* Add ability to specify headers in PUT/PATCH request in functional tests
+* Fix 500 error when we specify invalid headers when work with blob/bloblist
+* fix a typo in show_multiple_locations help message
+* Updated from global requirements
 * Add testresources and testscenarios used by oslo.db fixture
+* Add testresources and testscenarios used by oslo.db fixture
+* Add 'deactivated' status to image schema
+* Fix the bug of "Error spelling of a word"
+* Imported Translations from Zanata
+* Fix 409 response when updating an image by removing read-only property
 
 11.0.0.0rc2
 -----------
 
+* Imported Translations from Zanata
+* Updated from global requirements
+* Port api test_common to Python 3
+* An explicit check for the presence of a property
 * Cleanup chunks for deleted image if token expired
 * Download forbidden when get_image_location is set
+* Download forbidden when get_image_location is set
+* tell pbr to tell sphinx to treat warnings as errors
+* add placeholder to ensure _static directory exists
+* add the man pages to the toctree
+* escape underline introducing a spurrious link reference
+* do not indent include directives
+* add missing document to toctree
+* fix restructuredtext formatting errors
+* Catch NotAuthenticated exception in import task
+* Cleanup chunks for deleted image if token expired
 * Catch NotAuthenticated exception in import task
 * Imported Translations from Zanata
 * Return missing authtoken options
+* Change string generation mechanism for info logging
+* Add Large pages meta definition
+* Return missing authtoken options
+* Fix mutable defaults in tests
+* Imported Translations from Zanata
 
 11.0.0.0rc1
 -----------
 
+* Open Mitaka development
 * Cleanup of Translations
 * Remove redundant requirements.txt from tox
+* Add swiftclient to test-requirements
 * Updated from global requirements
 * Update Glance example configs to reflect Liberty
 * Imported Translations from Zanata
@@ -56,12 +338,18 @@ CHANGES
 * Change ignore-errors to ignore_errors
 * Prevent extraneous log messages and stdout prints
 * [Glance Developer Guide] Grammar edits
+* utils: stop building useless closure
+* Remove `openstack' directory
 * Imported Translations from Zanata
 * Fixes the possibility of leaving orphaned data
+* Add missing function '_validate_limit'
+* Fix wrong parameters order in Task
 * Remove WARN log message from version_negotiation
+* Fix order of arguments in assertEqual
 * Scrub images in parallel
 * Make task_time_to_live work
 * Incorrect permissions on database migration file
+* Add _member_ to property-protections-roles.conf.sample
 * Domain model section
 * Add unit tests for signature_utils class
 * Scrubber to communicate with trustedauth registry
@@ -97,10 +385,17 @@ CHANGES
 * Imported Translations from Transifex
 * Add CPU Pinning in metadata definitions
 * Fix image owner can't be changed issue in v2
+* Port common.utils to Python 3
+* Port store image to Python 3
+* Port replicator to Python 3
+* Port glance.db to Python 3
+* Port image cache to Python 3
+* Fix Python 3 issues in glance.tests.unit.common
 * Don't use slashes for long lines - use parentheses instead
 * Updated from global requirements
 * Imported Translations from Transifex
 * Don't import files with backed files
+* Use oslo_config PortOpt support
 * Setting default max_request_id_length to 64
 * Add mechanism to limit Request ID size
 * return request_id in case of 500 error
@@ -114,6 +409,7 @@ CHANGES
 * Fix Request ID has a double 'req-' at the start
 * Fix few typos in glance
 * Updated from global requirements
+* Fix 501 error when accessing the server with a non-existent method
 * Imported Translations from Transifex
 * Fix existing migrations to create utf-8 tables for MySQL DB
 * Remove Catalog Index Service
