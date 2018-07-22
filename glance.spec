@@ -4,7 +4,7 @@
 #
 Name     : glance
 Version  : 12.0.0
-Release  : 55
+Release  : 56
 URL      : http://tarballs.openstack.org/glance/glance-12.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-12.0.0.tar.gz
 Source1  : glance-api.service
@@ -15,38 +15,61 @@ Summary  : OpenStack Image Service
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: glance-bin
-Requires: glance-python
+Requires: glance-python3
 Requires: glance-config
 Requires: glance-data
-BuildRequires : SQLAlchemy-python
-BuildRequires : WSME-python
-BuildRequires : castellan-python
-BuildRequires : cffi
-BuildRequires : cffi-python
-BuildRequires : cryptography
-BuildRequires : debtcollector-python
-BuildRequires : futurist-python
-BuildRequires : glance_store-python
-BuildRequires : iso8601-python
-BuildRequires : keystonemiddleware
-BuildRequires : monotonic-python
-BuildRequires : oslo.db-python
-BuildRequires : oslo.messaging-python
-BuildRequires : oslo.middleware-python
-BuildRequires : oslo.policy-python
-BuildRequires : osprofiler-python
+Requires: glance-license
+Requires: glance-python
+Requires: Paste
+Requires: PasteDeploy
+Requires: Routes
+Requires: SQLAlchemy
+Requires: WSME
+Requires: WebOb
+Requires: castellan
+Requires: cryptography
+Requires: debtcollector
+Requires: eventlet
+Requires: futurist
+Requires: glance_store
+Requires: httplib2
+Requires: iso8601
+Requires: jsonschema
+Requires: keystoneauth1
+Requires: keystonemiddleware
+Requires: monotonic
+Requires: oslo.concurrency
+Requires: oslo.config
+Requires: oslo.context
+Requires: oslo.db
+Requires: oslo.i18n
+Requires: oslo.log
+Requires: oslo.messaging
+Requires: oslo.middleware
+Requires: oslo.policy
+Requires: oslo.serialization
+Requires: oslo.service
+Requires: oslo.utils
+Requires: osprofiler
+Requires: pbr
+Requires: pyOpenSSL
+Requires: pycrypto
+Requires: python-glanceclient
+Requires: python-keystoneclient
+Requires: retrying
+Requires: semantic_version
+Requires: six
+Requires: sqlalchemy-migrate
+Requires: stevedore
+Requires: taskflow
+BuildRequires : buildreq-distutils3
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pluggy
 BuildRequires : py-python
-BuildRequires : pycrypto-python
 BuildRequires : pytest
-BuildRequires : python-dev
-BuildRequires : pytz-python
-BuildRequires : semantic_version-python
+BuildRequires : python3-dev
 BuildRequires : setuptools
-BuildRequires : sqlalchemy-migrate-python
-BuildRequires : taskflow-python
 BuildRequires : tox
 BuildRequires : virtualenv
 Patch1: 0001-Enable-systemd-notification.patch
@@ -54,15 +77,18 @@ Patch2: 0002-Default-configuration-values.patch
 Patch3: 0003-move-json-metadefs-to-stateless-dir.patch
 
 %description
-This is a database migration repository.
-More information at
-http://code.google.com/p/sqlalchemy-migrate/
+Glance
+        ======
+        
+        Glance is a project that defines services for discovering, registering,
+        retrieving and storing virtual machine images.
 
 %package bin
 Summary: bin components for the glance package.
 Group: Binaries
 Requires: glance-data
 Requires: glance-config
+Requires: glance-license
 
 %description bin
 bin components for the glance package.
@@ -84,29 +110,30 @@ Group: Data
 data components for the glance package.
 
 
+%package license
+Summary: license components for the glance package.
+Group: Default
+
+%description license
+license components for the glance package.
+
+
 %package python
 Summary: python components for the glance package.
 Group: Default
-Requires: SQLAlchemy-python
-Requires: WSME-python
-Requires: castellan-python
-Requires: cryptography
-Requires: debtcollector-python
-Requires: futurist-python
-Requires: iso8601-python
-Requires: keystonemiddleware
-Requires: monotonic-python
-Requires: oslo.db-python
-Requires: oslo.messaging-python
-Requires: oslo.middleware-python
-Requires: oslo.policy-python
-Requires: osprofiler-python
-Requires: pycrypto-python
-Requires: sqlalchemy-migrate-python
-Requires: taskflow-python
+Requires: glance-python3
 
 %description python
 python components for the glance package.
+
+
+%package python3
+Summary: python3 components for the glance package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the glance package.
 
 
 %prep
@@ -116,16 +143,26 @@ python components for the glance package.
 %patch3 -p1
 
 %build
-python2 setup.py build -b py2
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C
+export SOURCE_DATE_EPOCH=1532218461
+python3 setup.py build -b py3
 
 %check
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python2.7/site-packages python2 setup.py test || :
+PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test || :
 %install
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/glance
+cp LICENSE %{buildroot}/usr/share/doc/glance/LICENSE
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
+echo ----[ mark ]----
+cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
+echo ----[ mark ]----
 mkdir -p %{buildroot}/usr/lib/systemd/system
 install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/glance-api.service
 install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/systemd/system/glance-registry.service
@@ -214,6 +251,13 @@ for i in %{buildroot}/usr/share/defaults/glance/*.sample; do mv $i ${i%.*}; done
 /usr/share/defaults/glance/property-protections-roles.conf
 /usr/share/defaults/glance/schema-image.json
 
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/glance/LICENSE
+
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+
+%files python3
+%defattr(-,root,root,-)
+/usr/lib/python3*/*
