@@ -5,15 +5,15 @@
 # Source0 file verified with key 0xC36CDCB4DF00C68C (infra-root@openstack.org)
 #
 Name     : glance
-Version  : 16.0.1
-Release  : 57
-URL      : http://tarballs.openstack.org/glance/glance-16.0.1.tar.gz
-Source0  : http://tarballs.openstack.org/glance/glance-16.0.1.tar.gz
+Version  : 17.0.0.0b1
+Release  : 58
+URL      : http://tarballs.openstack.org/glance/glance-17.0.0.0b1.tar.gz
+Source0  : http://tarballs.openstack.org/glance/glance-17.0.0.0b1.tar.gz
 Source1  : glance-api.service
 Source2  : glance-registry.service
 Source3  : glance-scrubber.service
 Source4  : glance.tmpfiles
-Source99 : http://tarballs.openstack.org/glance/glance-16.0.1.tar.gz.asc
+Source99 : http://tarballs.openstack.org/glance/glance-17.0.0.0b1.tar.gz.asc
 Summary  : OpenStack Image Service
 Group    : Development/Tools
 License  : Apache-2.0
@@ -27,6 +27,7 @@ Requires: Paste
 Requires: PasteDeploy
 Requires: Routes
 Requires: SQLAlchemy
+Requires: Sphinx
 Requires: WSME
 Requires: WebOb
 Requires: alembic
@@ -42,6 +43,7 @@ Requires: jsonschema
 Requires: keystoneauth1
 Requires: keystonemiddleware
 Requires: monotonic
+Requires: openstackdocstheme
 Requires: oslo.concurrency
 Requires: oslo.config
 Requires: oslo.context
@@ -56,20 +58,19 @@ Requires: osprofiler
 Requires: pbr
 Requires: pyOpenSSL
 Requires: python-keystoneclient
+Requires: reno
 Requires: retrying
 Requires: six
 Requires: sqlalchemy-migrate
 Requires: sqlparse
 Requires: stevedore
 Requires: taskflow
+Requires: xattr
 BuildRequires : buildreq-distutils3
 BuildRequires : pbr
-BuildRequires : pip
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
-BuildRequires : python3-dev
-BuildRequires : setuptools
 BuildRequires : tox
 BuildRequires : virtualenv
 
@@ -131,14 +132,14 @@ python3 components for the glance package.
 
 
 %prep
-%setup -q -n glance-16.0.1
+%setup -q -n glance-17.0.0.0b1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532238310
+export SOURCE_DATE_EPOCH=1532354312
 python3 setup.py build -b py3
 
 %check
