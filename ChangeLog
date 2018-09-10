@@ -1,54 +1,161 @@
 CHANGES
 =======
 
-16.0.1
+17.0.0
 ------
 
-* Releasenotes for 16.0.1
-* Update image schema with Image API 2.6 statuses
-* Update installation guide: no uwsgi for glance
-* Use 'Default' as sample install domain name
-* Functional tests for new Image Import API
-* Update auth\_url in install docs
-* Fix web-download fails with default node\_staging\_uri
-* Python 3.5: Image Import fails with Unicode Error
-* Use oslo\_db.sqlalchemy.test\_fixtures
-* Use config opt value to determine import methods
-* Add barbican-tempest experimental job
-* Imported Translations from Zanata
+* api-ref: "hidden" images update
+* Fine tune Rocky releasenotes
+* Remove broken bandit runs from the tests
+* Support RFC1738 quoted chars in passwords
+* Add know inssues and upgrade release note
+* Update UPPER\_CONSTRAINTS\_FILE for stable/rocky
+* Update .gitreview for stable/rocky
 
-16.0.0
-------
-
-* Regenerate sample config files
-* Add Queens release note
-* Revise help text for uri filtering options
-* Triggers shouldn't be execute in offline migration
-* Revise database rolling upgrade documentation
-* api-ref: update interoperable image import info
-* Fix config group not found error
-* Migration support for postgresql
-* Add validation to check if E-M-C is already in sync
-* Revise interoperable image import documentation
-* Imported Translations from Zanata
-* Update Queens info about Glance and uWSGI
-* Imported Translations from Zanata
-
-16.0.0.0rc2
+17.0.0.0rc1
 -----------
 
+* Add prelude to Rocky releasenotes
+* Add release note for multi-store feature
+* Imported Translations from Zanata
+* api-ref: update version history
+* Add API version 2.8
+* api-ref: make the discovery section more general
+* Sync Rocky example configs
+* Replace mox with mock
+* Correct typo in help text
+* Doc:Multiple stores support
+* Bump Imges API version to 2.7
+* Unit/Functional tests for multi store support
+* Add multi-store support
+* Multihash implementation for Glance
+* Document hw\_cpu\_policy and hw\_cpu\_thread\_policy image properties
+
+17.0.0.0b3
+----------
+
+* Hide old images
+* Use glance.context.RequestContext in tests
+* Update glance documentation for trait support
+* Remove Images API v1 entry points
+* fix tox python3 overrides
+* replace cmp with total\_ordering decorator
+* Documentation for OSSN-0075 mitigation
+* Change default age of purge\_images\_table to 180
+* Mitigate OSSN-0075
+* Prevent taskflow creation in impossible import
+* useful-image-properties.rst: Update default RNG source
+* Add image conversion plugin
+
+17.0.0.0b2
+----------
+
+* Regenerate sample config files
+* Update Release CPL doc about periodic jobs
+* Use group\_regex to serialize scrubber tests
+* Replace Chinese punctuation with English punctuation
+* Remove deprecated 'enable\_image\_import' option
+* convert windows line endings to unix format
+* Add glance-eventlet-ssl-handshake-broken-py35 job
+* Convert to string before using assertIn
+* Add periodic tips jobs
+* Add py35 statement
+* Fix unreachable 'ImageSizeLimitExceeded' exception in image-upload
+* Update pypi url to new url
+* Refactor exception handling in cmd.api
+* update "auth\_url" in document
+* Fix wrong scheduler\_hints name in CIM::ProcessorAllocationSettingData
+* Prevent early exit from functional tests
+* Refactor wait\_for\_scrubber\_shutdown function
+* Run scrubber functional tests in serial mode
+* Add time-bounded wait-for-status to func tests
+* Add 'useful image properties' document
+* [api-ref] "Show images" should be changed to "List images"
+* Follow the OpenStack Sphinx theme configuration
+* Prepare for WebOb 1.8.1
+* Add redirect capability to glance docs
+* Modify the empty list ensure method
+* Pending-delete rollback ability
+
+17.0.0.0b1
+----------
+
+* Cleaning image data when image signature verification fails
+* Imported Translations from Zanata
+* Add info about building the v1 api-ref
+* Follow the new PTI for document build
+* Fix incompatible requirement in requirement.txt
+* Migrate legacy job to project repository
+* Remove all usage of keystoneclient
+* Add fixture to limit unit test log output
+* Refactor scrubber functional test
+* Update auth\_uri option to www\_authenticate\_uri
+* Use 'Default' as sample install domain name
+* Update image schema with Image API 2.6 statuses
+* Functional tests for new Image Import API
+* Update auth\_url in install docs
+* add lower-constraints job
+* Fix web-download fails with default node\_staging\_uri
+* Make functional tests run by default
+* Imported Translations from Zanata
+* Make eventlet monkey patching conform to best practices
+* Python 3.5: Image Import fails with Unicode Error
+* Updated from global requirements
+* Change the outdated links to the latest links in README
+* Update Glance landing pages
+* Updated from global requirements
+* Deprecate owner\_is\_tenant
+* Updated from global requirements
+* Imported Translations from Zanata
+* Fix format in doc/source/cli/\*
+* Clean the web-download tests
+* Update Release CPL doc
+* Use config opt value to determine import methods
+* Delete the superfluous symbol of the command line
+* Add barbican-tempest experimental job
+* Open Rocky for data migrations
+* Unit tests for Web-Download import method
+* api-ref: correct typo
+* api-ref: fix list-resource-type-assocs example
+* Remove v1 from API ref
+* Imported Translations from Zanata
+* Remove v1 tests
+* Imported Translations from Zanata
+* Update installation guide: no uwsgi for glance
+* Update some url links of rally/README.rst
+* Hide Pike note on Queens Release Notes page
+* Triggers shouldn't be execute in offline migration
+* Revise help text for uri filtering options
+* Revise database rolling upgrade documentation
+* Migration support for postgresql
+* Correct length limit for custom property value
+* Use oslo\_db.sqlalchemy.test\_fixtures
+* Fix config group not found error
+* api-ref: update interoperable image import info
+* Updated from global requirements
+* Update Queens info about Glance and uWSGI
+* Remove use of mox/mox3
+* Imported Translations from Zanata
+* Revise interoperable image import documentation
 * Update admin docs for web-download import method
 * URI filtering for web-download
-* Make the Image status transition early
-* Cleanup basic import tasks
-* Use bool instead of int for boolean filter value
-* Limit default workers to 8
-* Offline migration support for postgresql
-* Use configured value for import-methods header
+* Add validation to check if E-M-C is already in sync
 * Imported Translations from Zanata
+* Cleanup basic import tasks
+* Make the Image status transition early
+* Use bool instead of int for boolean filter value
+* image-guide: Update cirros image
+* Limit default workers to 8
+* Imported Translations from Zanata
+* Fix format cache.rst
+* Imported Translations from Zanata
+* Use configured value for import-methods header
 * Fix bad usage of extend in list\_image\_import\_opts
-* Update UPPER\_CONSTRAINTS\_FILE for stable/queens
-* Update .gitreview for stable/queens
+* Revert "Fix wrong usage of extend in list\_image\_import\_opts"
+* Offline migration support for postgresql
+* Fix wrong usage of extend in list\_image\_import\_opts
+* Imported Translations from Zanata
+* Update reno for stable/queens
 
 16.0.0.0rc1
 -----------
@@ -64,6 +171,7 @@ CHANGES
 * Release note for Queens metadefs changes
 * Regenerate sample configuration files
 * Exiting with user friendly message and SystemExit()
+* correct grammar, duplicate a found
 * Modify glance manage db sync to use EMC
 * Add img\_linked\_clone to compute vmware metadefs
 * Handle TZ change in iso8601 >=0.1.12
@@ -92,6 +200,7 @@ CHANGES
 * Updated from global requirements
 * Add documentation for image import plugins
 * Update scrubber documentation
+* [doc] Modify the description for the command
 * Scrubber refactor
 * Add hooks for Image Import plugins
 * Updated from global requirements

@@ -1,5 +1,5 @@
 PKG_NAME := glance
-URL = http://tarballs.openstack.org/glance/glance-16.0.1.tar.gz
+URL = http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
