@@ -6,7 +6,7 @@
 #
 Name     : glance
 Version  : 17.0.0
-Release  : 60
+Release  : 61
 URL      : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source1  : glance-api.service
@@ -17,12 +17,13 @@ Source99 : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz.asc
 Summary  : OpenStack Image Service
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: glance-bin
-Requires: glance-config
-Requires: glance-python3
-Requires: glance-data
-Requires: glance-license
-Requires: glance-python
+Requires: glance-bin = %{version}-%{release}
+Requires: glance-config = %{version}-%{release}
+Requires: glance-data = %{version}-%{release}
+Requires: glance-license = %{version}-%{release}
+Requires: glance-python = %{version}-%{release}
+Requires: glance-python3 = %{version}-%{release}
+Requires: glance-services = %{version}-%{release}
 Requires: Paste
 Requires: PasteDeploy
 Requires: Routes
@@ -83,9 +84,10 @@ Team and repository tags
 %package bin
 Summary: bin components for the glance package.
 Group: Binaries
-Requires: glance-data
-Requires: glance-config
-Requires: glance-license
+Requires: glance-data = %{version}-%{release}
+Requires: glance-config = %{version}-%{release}
+Requires: glance-license = %{version}-%{release}
+Requires: glance-services = %{version}-%{release}
 
 %description bin
 bin components for the glance package.
@@ -118,7 +120,7 @@ license components for the glance package.
 %package python
 Summary: python components for the glance package.
 Group: Default
-Requires: glance-python3
+Requires: glance-python3 = %{version}-%{release}
 
 %description python
 python components for the glance package.
@@ -133,6 +135,14 @@ Requires: python3-core
 python3 components for the glance package.
 
 
+%package services
+Summary: services components for the glance package.
+Group: Systemd services
+
+%description services
+services components for the glance package.
+
+
 %prep
 %setup -q -n glance-17.0.0
 
@@ -141,8 +151,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536548554
-python3 setup.py build -b py3
+export SOURCE_DATE_EPOCH=1541266236
+python3 setup.py build
 
 %check
 export http_proxy=http://127.0.0.1:9/
@@ -151,9 +161,9 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test || :
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/glance
-cp LICENSE %{buildroot}/usr/share/doc/glance/LICENSE
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/glance
+cp LICENSE %{buildroot}/usr/share/package-licenses/glance/LICENSE
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -232,9 +242,6 @@ for i in %{buildroot}/usr/share/defaults/glance/*.sample; do mv $i ${i%.*}; done
 %config /usr/etc/glance/metadefs/storage-volume-type.json
 %config /usr/etc/glance/policy.json
 %config /usr/etc/glance/rootwrap.conf
-/usr/lib/systemd/system/glance-api.service
-/usr/lib/systemd/system/glance-registry.service
-/usr/lib/systemd/system/glance-scrubber.service
 /usr/lib/tmpfiles.d/glance.conf
 
 %files data
@@ -256,8 +263,8 @@ for i in %{buildroot}/usr/share/defaults/glance/*.sample; do mv $i ${i%.*}; done
 /usr/share/defaults/glance/schema-image.json
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/glance/LICENSE
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/glance/LICENSE
 
 %files python
 %defattr(-,root,root,-)
@@ -265,3 +272,9 @@ for i in %{buildroot}/usr/share/defaults/glance/*.sample; do mv $i ${i%.*}; done
 %files python3
 %defattr(-,root,root,-)
 /usr/lib/python3*/*
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/glance-api.service
+/usr/lib/systemd/system/glance-registry.service
+/usr/lib/systemd/system/glance-scrubber.service
