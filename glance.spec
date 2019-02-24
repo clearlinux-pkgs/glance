@@ -6,7 +6,7 @@
 #
 Name     : glance
 Version  : 17.0.0
-Release  : 61
+Release  : 62
 URL      : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source1  : glance-api.service
@@ -28,7 +28,6 @@ Requires: Paste
 Requires: PasteDeploy
 Requires: Routes
 Requires: SQLAlchemy
-Requires: Sphinx
 Requires: WSME
 Requires: WebOb
 Requires: alembic
@@ -45,8 +44,6 @@ Requires: jsonschema
 Requires: keystoneauth1
 Requires: keystonemiddleware
 Requires: monotonic
-Requires: openstackdocstheme
-Requires: os-api-ref
 Requires: oslo.concurrency
 Requires: oslo.config
 Requires: oslo.context
@@ -60,26 +57,60 @@ Requires: oslo.utils
 Requires: osprofiler
 Requires: pbr
 Requires: pyOpenSSL
-Requires: reno
 Requires: retrying
 Requires: six
-Requires: sphinxcontrib-apidoc
 Requires: sqlalchemy-migrate
 Requires: sqlparse
 Requires: stevedore
 Requires: taskflow
-Requires: xattr
+BuildRequires : Paste-python
+BuildRequires : WSME-python
+BuildRequires : alembic-python
 BuildRequires : buildreq-distutils3
+BuildRequires : cursive-python
+BuildRequires : debtcollector-python
+BuildRequires : glance_store-python
+BuildRequires : httplib2
+BuildRequires : iso8601-python
+BuildRequires : jsonschema-python
+BuildRequires : keystonemiddleware
+BuildRequires : monotonic-python
+BuildRequires : oslo.db-python
+BuildRequires : oslo.i18n-python
+BuildRequires : oslo.log-python
+BuildRequires : oslo.messaging-python
+BuildRequires : oslo.middleware-python
+BuildRequires : oslo.policy-python
+BuildRequires : osprofiler-python
 BuildRequires : pbr
 BuildRequires : pluggy
+BuildRequires : prettytable
 BuildRequires : py-python
 BuildRequires : pytest
+BuildRequires : retrying-python
+BuildRequires : taskflow-python
 BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
+========================
 Team and repository tags
-        ========================
+========================
+.. image:: http://governance.openstack.org/tc/badges/glance.svg
+:target: http://governance.openstack.org/tc/reference/tags/index.html
+:alt: The following tags have been asserted for the Glance project:
+"project:official",
+"tc:approved-release",
+"stable:follows-policy",
+"tc:starter-kit:compute",
+"vulnerability:managed",
+"team:diverse-affiliation",
+"assert:supports-upgrade",
+"assert:follows-standard-deprecation".
+Follow the link for an explanation of these tags.
+.. NOTE(rosmaita): the alt text above will have to be updated when
+additional tags are asserted for Glance.  (The SVG in the
+governance repo is updated automatically.)
 
 %package bin
 Summary: bin components for the glance package.
@@ -151,7 +182,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541266236
+export SOURCE_DATE_EPOCH=1551032950
+export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %check
