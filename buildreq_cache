@@ -18,5 +18,8 @@ oslo.middleware-python
 oslo.policy-python
 osprofiler-python
 prettytable
+python-swiftclient-python
+qpid-python-python
 retrying-python
 taskflow-python
+xattr-python

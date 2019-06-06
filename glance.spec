@@ -6,7 +6,7 @@
 #
 Name     : glance
 Version  : 17.0.0
-Release  : 63
+Release  : 64
 URL      : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source1  : glance-api.service
@@ -63,34 +63,72 @@ Requires: sqlalchemy-migrate
 Requires: sqlparse
 Requires: stevedore
 Requires: taskflow
+BuildRequires : Paste
 BuildRequires : Paste-python
+BuildRequires : PasteDeploy
+BuildRequires : Routes
+BuildRequires : SQLAlchemy
+BuildRequires : WSME
 BuildRequires : WSME-python
+BuildRequires : WebOb
+BuildRequires : alembic
 BuildRequires : alembic-python
 BuildRequires : buildreq-distutils3
+BuildRequires : cryptography
+BuildRequires : cursive
 BuildRequires : cursive-python
+BuildRequires : debtcollector
 BuildRequires : debtcollector-python
+BuildRequires : defusedxml
+BuildRequires : eventlet
+BuildRequires : futurist
 BuildRequires : glance_store-python
 BuildRequires : httplib2
+BuildRequires : iso8601
 BuildRequires : iso8601-python
+BuildRequires : jsonschema
 BuildRequires : jsonschema-python
+BuildRequires : keystoneauth1
 BuildRequires : keystonemiddleware
+BuildRequires : monotonic
 BuildRequires : monotonic-python
+BuildRequires : oslo.concurrency
+BuildRequires : oslo.config
+BuildRequires : oslo.context
+BuildRequires : oslo.db
 BuildRequires : oslo.db-python
+BuildRequires : oslo.i18n
 BuildRequires : oslo.i18n-python
+BuildRequires : oslo.log
 BuildRequires : oslo.log-python
+BuildRequires : oslo.messaging
 BuildRequires : oslo.messaging-python
+BuildRequires : oslo.middleware
 BuildRequires : oslo.middleware-python
+BuildRequires : oslo.policy
 BuildRequires : oslo.policy-python
+BuildRequires : oslo.utils
+BuildRequires : osprofiler
 BuildRequires : osprofiler-python
 BuildRequires : pbr
 BuildRequires : pluggy
 BuildRequires : prettytable
 BuildRequires : py-python
+BuildRequires : pyOpenSSL
 BuildRequires : pytest
+BuildRequires : python-swiftclient-python
+BuildRequires : qpid-python-python
+BuildRequires : retrying
 BuildRequires : retrying-python
+BuildRequires : six
+BuildRequires : sqlalchemy-migrate
+BuildRequires : sqlparse
+BuildRequires : stevedore
+BuildRequires : taskflow
 BuildRequires : taskflow-python
 BuildRequires : tox
 BuildRequires : virtualenv
+BuildRequires : xattr-python
 
 %description
 ========================
@@ -182,7 +220,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551032950
+export SOURCE_DATE_EPOCH=1559832967
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -192,6 +237,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test || :
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/glance
 cp LICENSE %{buildroot}/usr/share/package-licenses/glance/LICENSE
@@ -207,6 +253,7 @@ mkdir -p %{buildroot}/usr/lib/tmpfiles.d
 install -m 0644 %{SOURCE4} %{buildroot}/usr/lib/tmpfiles.d/glance.conf
 ## install_append content
 install -d -m 755 %{buildroot}/usr/share/defaults/glance/
+mv %{buildroot}/usr/etc/glance/*  %{buildroot}/usr/share/defaults/glance/
 install -p -D -m 644 etc/*.conf %{buildroot}/usr/share/defaults/glance/
 install -p -D -m 644 etc/*.ini %{buildroot}/usr/share/defaults/glance/
 install -p -D -m 644 etc/*.json %{buildroot}/usr/share/defaults/glance/
@@ -233,47 +280,6 @@ for i in %{buildroot}/usr/share/defaults/glance/*.sample; do mv $i ${i%.*}; done
 
 %files config
 %defattr(-,root,root,-)
-%config /usr/etc/glance/glance-api-paste.ini
-%config /usr/etc/glance/glance-api.conf
-%config /usr/etc/glance/glance-cache.conf
-%config /usr/etc/glance/glance-manage.conf
-%config /usr/etc/glance/glance-registry-paste.ini
-%config /usr/etc/glance/glance-registry.conf
-%config /usr/etc/glance/glance-scrubber.conf
-%config /usr/etc/glance/metadefs/README
-%config /usr/etc/glance/metadefs/cim-processor-allocation-setting-data.json
-%config /usr/etc/glance/metadefs/cim-resource-allocation-setting-data.json
-%config /usr/etc/glance/metadefs/cim-storage-allocation-setting-data.json
-%config /usr/etc/glance/metadefs/cim-virtual-system-setting-data.json
-%config /usr/etc/glance/metadefs/compute-aggr-disk-filter.json
-%config /usr/etc/glance/metadefs/compute-aggr-iops-filter.json
-%config /usr/etc/glance/metadefs/compute-aggr-num-instances.json
-%config /usr/etc/glance/metadefs/compute-cpu-pinning.json
-%config /usr/etc/glance/metadefs/compute-guest-memory-backing.json
-%config /usr/etc/glance/metadefs/compute-guest-shutdown.json
-%config /usr/etc/glance/metadefs/compute-host-capabilities.json
-%config /usr/etc/glance/metadefs/compute-hypervisor.json
-%config /usr/etc/glance/metadefs/compute-instance-data.json
-%config /usr/etc/glance/metadefs/compute-libvirt-image.json
-%config /usr/etc/glance/metadefs/compute-libvirt.json
-%config /usr/etc/glance/metadefs/compute-quota.json
-%config /usr/etc/glance/metadefs/compute-randomgen.json
-%config /usr/etc/glance/metadefs/compute-trust.json
-%config /usr/etc/glance/metadefs/compute-vcputopology.json
-%config /usr/etc/glance/metadefs/compute-vmware-flavor.json
-%config /usr/etc/glance/metadefs/compute-vmware-quota-flavor.json
-%config /usr/etc/glance/metadefs/compute-vmware.json
-%config /usr/etc/glance/metadefs/compute-watchdog.json
-%config /usr/etc/glance/metadefs/compute-xenapi.json
-%config /usr/etc/glance/metadefs/glance-common-image-props.json
-%config /usr/etc/glance/metadefs/image-signature-verification.json
-%config /usr/etc/glance/metadefs/operating-system.json
-%config /usr/etc/glance/metadefs/software-databases.json
-%config /usr/etc/glance/metadefs/software-runtimes.json
-%config /usr/etc/glance/metadefs/software-webservers.json
-%config /usr/etc/glance/metadefs/storage-volume-type.json
-%config /usr/etc/glance/policy.json
-%config /usr/etc/glance/rootwrap.conf
 /usr/lib/tmpfiles.d/glance.conf
 
 %files data
@@ -287,6 +293,38 @@ for i in %{buildroot}/usr/share/defaults/glance/*.sample; do mv $i ${i%.*}; done
 /usr/share/defaults/glance/glance-registry.conf
 /usr/share/defaults/glance/glance-scrubber.conf
 /usr/share/defaults/glance/glance-swift.conf
+/usr/share/defaults/glance/metadefs/README
+/usr/share/defaults/glance/metadefs/cim-processor-allocation-setting-data.json
+/usr/share/defaults/glance/metadefs/cim-resource-allocation-setting-data.json
+/usr/share/defaults/glance/metadefs/cim-storage-allocation-setting-data.json
+/usr/share/defaults/glance/metadefs/cim-virtual-system-setting-data.json
+/usr/share/defaults/glance/metadefs/compute-aggr-disk-filter.json
+/usr/share/defaults/glance/metadefs/compute-aggr-iops-filter.json
+/usr/share/defaults/glance/metadefs/compute-aggr-num-instances.json
+/usr/share/defaults/glance/metadefs/compute-cpu-pinning.json
+/usr/share/defaults/glance/metadefs/compute-guest-memory-backing.json
+/usr/share/defaults/glance/metadefs/compute-guest-shutdown.json
+/usr/share/defaults/glance/metadefs/compute-host-capabilities.json
+/usr/share/defaults/glance/metadefs/compute-hypervisor.json
+/usr/share/defaults/glance/metadefs/compute-instance-data.json
+/usr/share/defaults/glance/metadefs/compute-libvirt-image.json
+/usr/share/defaults/glance/metadefs/compute-libvirt.json
+/usr/share/defaults/glance/metadefs/compute-quota.json
+/usr/share/defaults/glance/metadefs/compute-randomgen.json
+/usr/share/defaults/glance/metadefs/compute-trust.json
+/usr/share/defaults/glance/metadefs/compute-vcputopology.json
+/usr/share/defaults/glance/metadefs/compute-vmware-flavor.json
+/usr/share/defaults/glance/metadefs/compute-vmware-quota-flavor.json
+/usr/share/defaults/glance/metadefs/compute-vmware.json
+/usr/share/defaults/glance/metadefs/compute-watchdog.json
+/usr/share/defaults/glance/metadefs/compute-xenapi.json
+/usr/share/defaults/glance/metadefs/glance-common-image-props.json
+/usr/share/defaults/glance/metadefs/image-signature-verification.json
+/usr/share/defaults/glance/metadefs/operating-system.json
+/usr/share/defaults/glance/metadefs/software-databases.json
+/usr/share/defaults/glance/metadefs/software-runtimes.json
+/usr/share/defaults/glance/metadefs/software-webservers.json
+/usr/share/defaults/glance/metadefs/storage-volume-type.json
 /usr/share/defaults/glance/ovf-metadata.json
 /usr/share/defaults/glance/policy.json
 /usr/share/defaults/glance/property-protections-policies.conf
