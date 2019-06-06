@@ -6,7 +6,7 @@
 #
 Name     : glance
 Version  : 17.0.0
-Release  : 65
+Release  : 66
 URL      : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source1  : glance-api.service
@@ -220,7 +220,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1559833851
+export SOURCE_DATE_EPOCH=1559835218
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
