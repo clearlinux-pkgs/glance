@@ -6,7 +6,7 @@
 #
 Name     : glance
 Version  : 17.0.0
-Release  : 68
+Release  : 69
 URL      : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source1  : glance-api.service
@@ -117,7 +117,6 @@ BuildRequires : py-python
 BuildRequires : pyOpenSSL
 BuildRequires : pytest
 BuildRequires : python-swiftclient-python
-BuildRequires : qpid-python-python
 BuildRequires : retrying
 BuildRequires : retrying-python
 BuildRequires : six
@@ -206,7 +205,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1566919265
+export SOURCE_DATE_EPOCH=1570563477
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
