@@ -6,14 +6,14 @@
 #
 Name     : glance
 Version  : 17.0.0
-Release  : 70
+Release  : 71
 URL      : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source1  : glance-api.service
 Source2  : glance-registry.service
 Source3  : glance-scrubber.service
 Source4  : glance.tmpfiles
-Source5 : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz.asc
+Source5  : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz.asc
 Summary  : OpenStack Image Service
 Group    : Development/Tools
 License  : Apache-2.0
@@ -198,6 +198,7 @@ services components for the glance package.
 
 %prep
 %setup -q -n glance-17.0.0
+cd %{_builddir}/glance-17.0.0
 %patch1 -p1
 
 %build
@@ -205,7 +206,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570563477
+export SOURCE_DATE_EPOCH=1576010206
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -221,12 +222,12 @@ python3 setup.py build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test || :
+PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python setup.py test || :
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/glance
-cp LICENSE %{buildroot}/usr/share/package-licenses/glance/LICENSE
+cp %{_builddir}/glance-17.0.0/LICENSE %{buildroot}/usr/share/package-licenses/glance/294b43b2cec9919063be1a3b49e8722648424779
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -320,7 +321,7 @@ for i in %{buildroot}/usr/share/defaults/glance/*.sample; do mv $i ${i%.*}; done
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/glance/LICENSE
+/usr/share/package-licenses/glance/294b43b2cec9919063be1a3b49e8722648424779
 
 %files python
 %defattr(-,root,root,-)
