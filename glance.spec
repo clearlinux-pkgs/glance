@@ -6,7 +6,7 @@
 #
 Name     : glance
 Version  : 17.0.0
-Release  : 71
+Release  : 72
 URL      : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source1  : glance-api.service
