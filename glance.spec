@@ -6,7 +6,7 @@
 #
 Name     : glance
 Version  : 17.0.0
-Release  : 72
+Release  : 73
 URL      : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source1  : glance-api.service
@@ -131,8 +131,24 @@ BuildRequires : xattr-python
 Patch1: 0001-Unfreeze-jsonschema.patch
 
 %description
+========================
 Team and repository tags
-        ========================
+========================
+.. image:: http://governance.openstack.org/tc/badges/glance.svg
+:target: http://governance.openstack.org/tc/reference/tags/index.html
+:alt: The following tags have been asserted for the Glance project:
+"project:official",
+"tc:approved-release",
+"stable:follows-policy",
+"tc:starter-kit:compute",
+"vulnerability:managed",
+"team:diverse-affiliation",
+"assert:supports-upgrade",
+"assert:follows-standard-deprecation".
+Follow the link for an explanation of these tags.
+.. NOTE(rosmaita): the alt text above will have to be updated when
+additional tags are asserted for Glance.  (The SVG in the
+governance repo is updated automatically.)
 
 %package bin
 Summary: bin components for the glance package.
@@ -206,7 +222,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576010206
+export SOURCE_DATE_EPOCH=1582930372
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
