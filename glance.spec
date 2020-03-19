@@ -6,7 +6,7 @@
 #
 Name     : glance
 Version  : 17.0.0
-Release  : 73
+Release  : 74
 URL      : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/glance/glance-17.0.0.tar.gz
 Source1  : glance-api.service
@@ -131,24 +131,8 @@ BuildRequires : xattr-python
 Patch1: 0001-Unfreeze-jsonschema.patch
 
 %description
-========================
 Team and repository tags
-========================
-.. image:: http://governance.openstack.org/tc/badges/glance.svg
-:target: http://governance.openstack.org/tc/reference/tags/index.html
-:alt: The following tags have been asserted for the Glance project:
-"project:official",
-"tc:approved-release",
-"stable:follows-policy",
-"tc:starter-kit:compute",
-"vulnerability:managed",
-"team:diverse-affiliation",
-"assert:supports-upgrade",
-"assert:follows-standard-deprecation".
-Follow the link for an explanation of these tags.
-.. NOTE(rosmaita): the alt text above will have to be updated when
-additional tags are asserted for Glance.  (The SVG in the
-governance repo is updated automatically.)
+        ========================
 
 %package bin
 Summary: bin components for the glance package.
@@ -199,6 +183,50 @@ python components for the glance package.
 Summary: python3 components for the glance package.
 Group: Default
 Requires: python3-core
+Provides: pypi(glance)
+Requires: pypi(alembic)
+Requires: pypi(castellan)
+Requires: pypi(cryptography)
+Requires: pypi(cursive)
+Requires: pypi(debtcollector)
+Requires: pypi(defusedxml)
+Requires: pypi(eventlet)
+Requires: pypi(futurist)
+Requires: pypi(glance_store)
+Requires: pypi(httplib2)
+Requires: pypi(iso8601)
+Requires: pypi(jsonschema)
+Requires: pypi(keystoneauth1)
+Requires: pypi(keystonemiddleware)
+Requires: pypi(os_win)
+Requires: pypi(oslo.concurrency)
+Requires: pypi(oslo.config)
+Requires: pypi(oslo.context)
+Requires: pypi(oslo.db)
+Requires: pypi(oslo.i18n)
+Requires: pypi(oslo.log)
+Requires: pypi(oslo.messaging)
+Requires: pypi(oslo.middleware)
+Requires: pypi(oslo.policy)
+Requires: pypi(oslo.reports)
+Requires: pypi(oslo.upgradecheck)
+Requires: pypi(oslo.utils)
+Requires: pypi(osprofiler)
+Requires: pypi(paste)
+Requires: pypi(pastedeploy)
+Requires: pypi(pbr)
+Requires: pypi(prettytable)
+Requires: pypi(pyopenssl)
+Requires: pypi(retrying)
+Requires: pypi(routes)
+Requires: pypi(six)
+Requires: pypi(sqlalchemy)
+Requires: pypi(sqlalchemy_migrate)
+Requires: pypi(sqlparse)
+Requires: pypi(stevedore)
+Requires: pypi(taskflow)
+Requires: pypi(webob)
+Requires: pypi(wsme)
 
 %description python3
 python3 components for the glance package.
@@ -222,8 +250,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582930372
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1584642917
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
